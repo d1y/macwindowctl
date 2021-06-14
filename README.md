@@ -22,6 +22,7 @@ Macwindowctl(
   buttonSize: 24,
   blurSize: 24,
   focused: true,
+  buttonReverse: false,
   onHover: (action) {
     // print("hover action: $action");
   },

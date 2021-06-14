@@ -15,6 +15,8 @@ class MacApp extends StatefulWidget {
 
   bool focused = true;
 
+  bool buttonReverse = false;
+
   @override
   _MacAppState createState() => _MacAppState();
 }
@@ -70,6 +72,7 @@ class _MacAppState extends State<MacApp> {
                         buttonSize: widget.buttonSize,
                         blurSize: widget.blurSize,
                         focused: widget.focused,
+                        buttonReverse: widget.buttonReverse,
                         onHover: (action) {
                           // print("hover action: $action");
                         },
@@ -127,6 +130,19 @@ class _MacAppState extends State<MacApp> {
                                   });
                                 },
                                 value: widget.focused,
+                              )
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text("buttonReverse flag: "),
+                              CupertinoSwitch(
+                                onChanged: (value) {
+                                  setState(() {
+                                    widget.buttonReverse = value;
+                                  });
+                                },
+                                value: widget.buttonReverse,
                               )
                             ],
                           ),

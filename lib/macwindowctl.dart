@@ -24,7 +24,10 @@ class Macwindowctl extends StatefulWidget {
 
   final MacwindowctlClickEvent? onClick;
 
+  final bool? buttonReverse;
+
   Macwindowctl({
+    this.buttonReverse,
     this.onClick,
     this.onExit,
     this.onHover,
@@ -58,8 +61,30 @@ class _MacwindowctlState extends State<Macwindowctl> {
     }
   ];
 
+  Map<String, dynamic> _getButtonItem(MacwindowctlAction action) {
+    var tmp = _actions.where((element) => element["action"] == action).toList();
+    return tmp[0];
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (!!(widget.buttonReverse ?? false)) {
+      setState(() {
+        _actions = [
+          _getButtonItem(MacwindowctlAction.minimize),
+          _getButtonItem(MacwindowctlAction.maximize),
+          _getButtonItem(MacwindowctlAction.close),
+        ];
+      });
+    } else {
+      setState(() {
+        _actions = [
+          _getButtonItem(MacwindowctlAction.close),
+          _getButtonItem(MacwindowctlAction.minimize),
+          _getButtonItem(MacwindowctlAction.maximize),
+        ];
+      });
+    }
     return Container(
       child: Row(
         children: [
